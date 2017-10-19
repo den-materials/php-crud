@@ -37,11 +37,23 @@ Class Car {
 		if($mysql_connection->connect_error) {
 			die('Connection failed: ' . $mysql_connection->connect_error);
 		} else {
-			$sql = "DELETE FROM cars
-WHERE id=".$id.";";
+			$sql = "DELETE FROM cars WHERE id=".$id.";";
 			$mysql_connection->query($sql);
 		}
 	}	
+
+	static public function update($id, $car, $owner) {
+
+		global $mysql_connection;
+
+		if($mysql_connection->connect_error) {
+			$mysql_connection->close();
+			die('Connection failed: ' .$mysql_connection->connect_error);
+		} else {
+			$sql = "UPDATE cars SET car='".$car."', owner='".$owner."' WHERE id=".$id.";";
+			$mysql_connection->query($sql);
+		}
+	}
 
 }
 
