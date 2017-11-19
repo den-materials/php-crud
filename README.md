@@ -11,9 +11,14 @@
 2. **Connect** to MySQL
 3. **Build** CRUD functionality with PHP
 
+## Setup
+
+1. Create a new directory inside your MAMP Web Server root called `php_cars`. 
+2. cd into it, and `touch` a new file called `.htaccess`
+
 ## Route URLs to php files
 
-Routing can be accomplished with a .htaccess file placed in your root directory for the app.  
+Routing can be accomplished with a `.htaccess` file placed in your root directory for the app.  
 
 <details><summary>(It will look like this)</summary>
 	
@@ -85,11 +90,21 @@ Looping through the results would go like this:
 
 We need an app to keep track of all the cool cars we have.  How are we going to do this?  With a CRUD app!  If we were building this in Javascript, this would be old hat.  Since PHP is new to us, though, we'll go a little slower.
 
-### Setup
+### Getting started
 
-1. Create a new directory inside your MAMP Web Server root called `php_cars`.
+1. Make sure you have Sequel Pro, and can run a socket connection:
+	- Download [SequelPro](http://www.sequelpro.com/download) install/open it
+	- Click 'Socket' as your connection type
+	- Fill in the following info:
+		- Host: 127.0.0.1 (same as localhost - this doesn't need to be filled in)
+		- Username: root
+		- Password: root
+	- Click Connect
 
-1. Before we build our CRUD app, go into your `Sequel Pro` program, open the `Query` tab, and create the `phpcrud` database (You'll need to create a socket connection - directions can be found [here](https://github.com/den-materials/php-wordpress#set-up)).  We will use this database for all our data manipulation.
+1. Inside Sequel Pro, open the `Query` tab, and create the `phpcrud` database:
+```sql
+	CREATE DATABASE phpcrud;
+```
 
 1. Once this is done, we need to create a table for all the cars we are going to add.  Run the following query in `Sequel Pro`:
 
@@ -102,6 +117,10 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 	```
 
 1. `INSERT` a car into your table with a `car` and `owner` field.
+
+```sql
+	INSERT INTO cars VALUES (1, 'Quinjet', 'Hulk');
+```
 
 1. Make sure your car is in the table before moving on.
 
@@ -121,9 +140,9 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 
 <!--Actually 2:28 before starting this step -->
 
-Hard-coded text is great and all, but as with any CRUD route, we need to do two more things before we are really "full-stack": we need routes, and we need to talk to the DB.  That's where our notes from earlier come in.  We need to create an `.htaccess` file, and we need to connect to MySQL.  Here we go...
+Hard-coded text is great and all, but as with any CRUD route, we need to do two more things before we are really "full-stack": we need routes, and we need to talk to the DB.  That's where our `.htaccess` file comes in! We'll also need to connect to MySQL.
 
-1. Create an `.htaccess` file at the root of `php_cars`.  Put the following lines inside:
+1. Inside our `.htaccess` file, put the following lines inside:
 
 	```
 	RewriteEngine On
@@ -150,7 +169,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	}
 	```
 
-1. Wait, `$new_car_controller`?  We never created one of those.  Hold your horses, we're getting there:
+1. Wait, `$new_car_controller`?  We never created one of those.  Hold your horses, we're getting there. Place this above your `if` statement:
 
 	```php
 	Class CarController {
@@ -194,7 +213,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 
 </details>
 
-1. Now it's time for our [(America's Next Top) model](https://media.giphy.com/media/26FKX7B7L6cfHPVIY/giphy.gif).  
+1. Now it's time for our (America's Next Top) model! ![(America's Next Top) model](https://media.giphy.com/media/26FKX7B7L6cfHPVIY/giphy.gif).  
 
 Create a `models` folder and put a `car.php` file inside it.
 
@@ -332,15 +351,17 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 1. Now we need to head over to `models/car.php` to make the `Car::create()` method.  This is almost identical to the `Car::find()` method except for two crucial details: your SQL query will be different, and you need to pass in parameters.  Those lines will look like this, respectively:
 
 	```php
+	static public function create($car, $owner) {
+	```
+
+	```php
 	} else {
 		$sql = "INSERT INTO cars (car, owner) VALUES ('".$car."','".$owner."');";
 		$mysql_connection->query($sql);
 	}
 	```
 	
-	```php
-	static public function create($car, $owner) {
-	```
+	
 
 1. Once you've combined the lines above with your `find()` method to make a full `create()` method, we're ready to circle back to our views.  Create a new view in `views/cars` called `new.php`.  All you need on this page is some HTML boilerplate, a heading, and a form.  The form will have two `<input>`s, one with a `name` of "car", and the other with a `name` of "owner".  What should the `submit` `action` and `method` be?
 
