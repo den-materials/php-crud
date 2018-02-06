@@ -54,7 +54,9 @@ Once this change is made, you will need to `Stop Servers` and `Start Servers` in
 
 ## Connect to MySQL
 
-Simple database connection and querying looks like this:
+In the last unit, we did all of our connections to PostgreSQL, and we used the Sequelize tool to make our job easier.  With MAMP, we make connections directly to MySQL (very similar to PostgreSQL, but with a few minor differences).
+
+A simple database connection and querying looks like this:
 
 ```php
 $servername = "localhost";
@@ -101,10 +103,12 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 		- Password: root
 	- Click Connect
 
-1. Inside Sequel Pro, open the `Query` tab, and create the `phpcrud` database:
+1. Inside Sequel Pro, open the `Query` tab, and create the `phpcrud` database, by typing the following command in the white text box and selecting `Run Previous`:
 ```sql
 	CREATE DATABASE phpcrud;
 ```
+
+1. Select `phpcrud` from the `Choose Database...` dropdown in the top right of the screen.
 
 1. Once this is done, we need to create a table for all the cars we are going to add.  Run the following query in `Sequel Pro`:
 
@@ -161,7 +165,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	?>
 	```
 	
-1. We'll get to the model file in just a bit.  For now, though, we need build out that `action=index` we put in query params earlier. Place it inside your `php` tag in `cars.php`.
+1. We'll get to the model file in just a bit.  For now, though, we need to build out that `action=index` we put in query params earlier. Place it under the `require` statement in `cars.php`.
 
 	```php
 	if($_GET['action'] == 'index') {
@@ -237,6 +241,8 @@ Create a `models` folder and put a `car.php` file inside it.
 		$dbname = 'phpcrud';
 	}
 	```
+
+<!--Look familiar??  -->
 	
 1. Make sure the above matches your DB name and login parameters for MySQL, then add in the meat of the function DIRECTLY AFTER the setup variables:
 
@@ -284,7 +290,7 @@ Create a `models` folder and put a `car.php` file inside it.
 
 </details>
 
-1. Last piece. Our `index.php` for cars is still a blank template.  Let's get some cars in there.  Add this to the file below your `h1`:
+1. Last piece. Our `index.php` for cars is still a blank template.  Let's get some cars in there.  Add this to the `views/cars/index.php` file below your `h1`:
 
 	```php
 	  <section>
@@ -300,9 +306,13 @@ Create a `models` folder and put a `car.php` file inside it.
 
 1. If you restart your MAMP server, and go to `http://localhost:8888/php_cars/cars/`, you should see the car you created during setup!
 
+>**Note:** That's `http://localhost:8888/php_cars/cars/`, not `http://localhost:8888/php_cars/cars`, and not `http://localhost:8888/php_cars/views/cars/`.
+
 ![](images/powPowPowerWheels.gif)
 
-<!--First folks "finished" around 3:25-3:30, rest of folks took till 4...I may have set the bar too high on this one. Though everyone is literally sick and tired now, so...-->
+<!--
+First folks "finished" around 3:25-3:30, rest of folks took till 4...I may have set the bar too high on this one. Though everyone is literally sick and tired now, so...
+-->
 
 ### The "C" in CRUD
 
