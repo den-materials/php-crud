@@ -2,6 +2,8 @@
 
 <!--I think we started this at like 2:05...not sure.  I split the class into "team independence" and "team together", and the together team worked through a little more slowly, with some pointers from me.-->
 
+<!--WDI6 1:49  -->
+
 # CRUD With PHP
 
 ## Lesson Objectives
@@ -15,6 +17,8 @@
 
 1. Create a new directory inside your MAMP Web Server root called `php_cars`. 
 2. cd into it, and `touch` a new file called `.htaccess`
+
+<!--WDI6 1:53 -->
 
 ## Route URLs to php files
 
@@ -51,6 +55,8 @@ to `Allow` your `.htaccess` file.
 ```
 
 Once this change is made, you will need to `Stop Servers` and `Start Servers` in your MAMP console if it was already running.
+
+<!--WDI6 2:02 -->
 
 ## Connect to MySQL
 
@@ -108,7 +114,7 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 	CREATE DATABASE phpcrud;
 ```
 
-1. Select `phpcrud` from the `Choose Database...` dropdown in the top right of the screen.
+1. Select `phpcrud` from the `Choose Database...` dropdown in the top left of the screen.
 
 1. Once this is done, we need to create a table for all the cars we are going to add.  Run the following query in `Sequel Pro`:
 
