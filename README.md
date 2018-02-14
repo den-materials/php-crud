@@ -134,6 +134,7 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 
 1. Make sure your car is in the table before moving on.
 
+<!--WDI6 2:23  -->
 <!--2:23 before moving on to next step -->
 
 ### Hello PHP
@@ -146,6 +147,8 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 
 1. Go to `http://localhost:8888/php_cars/views/cars/`, and see your beautiful work!
 
+<!--WDI6 2:30 -->
+
 ### Getting our car from the DB
 
 <!--Actually 2:28 before starting this step -->
@@ -157,6 +160,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	```
 	RewriteEngine On
 	RewriteRule ^cars/$ controllers/cars.php?action=index
+	RewriteRule ^cars$ controllers/cars.php?action=index
 	```
 	
 1. You can probably guess what's coming next.  That controller folder and file we just referenced in `.htaccess`?  We need to create that. (Do that now.)
@@ -171,6 +175,8 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	?>
 	```
 	
+<!--WDI6 2:39 -->
+
 1. We'll get to the model file in just a bit.  For now, though, we need to build out that `action=index` we put in query params earlier. Place it under the `require` statement in `cars.php`.
 
 	```php
@@ -223,6 +229,8 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 
 </details>
 
+<!--WDI6 2:48 -->
+
 1. Now it's time for our (America's Next Top) model! ![(America's Next Top) model](https://media.giphy.com/media/26FKX7B7L6cfHPVIY/giphy.gif).  
 
 Create a `models` folder and put a `car.php` file inside it.
@@ -249,6 +257,7 @@ Create a `models` folder and put a `car.php` file inside it.
 	```
 
 <!--Look familiar??  -->
+<!--WDI6 2:58  -->
 	
 1. Make sure the above matches your DB name and login parameters for MySQL, then add in the meat of the function DIRECTLY AFTER the setup variables:
 
@@ -319,6 +328,8 @@ Create a `models` folder and put a `car.php` file inside it.
 <!--
 First folks "finished" around 3:25-3:30, rest of folks took till 4...I may have set the bar too high on this one. Though everyone is literally sick and tired now, so...
 -->
+
+<!--Most folks finished by 3:35, but a lot took till 4 for read WDI6-->
 
 ### The "C" in CRUD
 
